@@ -1,0 +1,36 @@
+.list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+.seminar {
+    border: 1px solid;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 1px 3px #00000080;
+    background-color: #fff;
+}
+.seminar_content{
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+.seminar_actions{
+    display: flex;
+    gap: 0.5rem;
+    flex-shrink: 1;
+}
+
+.seminar_actions>button{
+    background-color: transparent;
+    cursor: pointer;
+    border: none;
+    color: #5f6368;
+    opacity: 0.3;
+    transition: 0.5s ease;
+}
+
+.seminar_actions>button:hover{
+    opacity: 1;
+}

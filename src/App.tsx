@@ -1,10 +1,11 @@
 import './App.css'
+import SeminarList from './components/SeminarList/SeminarList'
 
 function App() {
 
   return (
     <>
-      <h1>Hello</h1>
+      <SeminarList />
     </>
   )
 }
