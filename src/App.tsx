@@ -5,6 +5,7 @@ function App() {
 
   return (
     <>
+      <h1 className='title'>Семинары</h1>
       <SeminarList />
     </>
   )
