@@ -3,6 +3,8 @@ import axios from "axios";
 import Modal from "../Modal/Modal";
 import "./seminarList.css"
 import ModalEdit from "../ModalEdit/ModalEdit";
+import SeminarItem from "../SeminarItem/SeminarItem";
+import Loader from "../Loader/Loader";
 
 // Интерфейс для описания структуры данных семинара
 interface SeminarsData{
@@ -30,7 +32,7 @@ const SeminarList:FC = () => {
         } catch(err) {
             console.log(err);
         } finally {
-            setLoading(false);
+          setTimeout(()=>{setLoading(false)},300);
         }
     };
 
@@ -59,43 +61,14 @@ const SeminarList:FC = () => {
   return (
     <>
       {isLoading ? ( // Если данные загружаются, показываем сообщение о загрузке
-        <div>Loading...</div>
+        <Loader />
       ) : (
-        <div className="list">
-          {seminars.map((item) => { // Отображение списка семинаров
-            return (
-              <div className="seminar" key={item.id}>
-                <img src={item.photo} alt="SeminarPhoto" />
-                <div className="seminar_content">
-                  <div className="seminar_details">
-                    <h2>{item.title}</h2>
-                    <p>{item.description}</p>
-                    <span>Дата: {item.date}</span>
-                    <span>Начало в {item.time}</span>
-                  </div>
-                  <div className="seminar_actions">
-                    <button
-                      onClick={() => {
-                        setModalEditActive(true);
-                        setSelectedSeminar(item);
-                      }}
-                    >
-                      Изменить
-                    </button>
-                    <button
-                      onClick={() => {
-                        setModalActive(true);
-                        setSelectedSeminar(item);
-                      }}
-                    >
-                      Удалить
-                    </button>
-                  </div>
-                </div>
-              </div>
-            );
-          })}
-        </div>
+        <SeminarItem
+          seminars={seminars}
+          setModalEditActive={setModalEditActive}
+          setSelectedSeminar={setSelectedSeminar}
+          setModalActive={setModalActive}
+        />
       )}
       {/* Модальное окно для подтверждения удаления */}
       {modalActive && (
